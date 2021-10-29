@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello VilleController!{% endblock %}
+
+{% block body %}
+<style>
+
+    .flex_div {
+        display: flex;
+        justify-content: space-between;
+         
+    }
+    .example-wrapper { margin: 1em auto; max-width: 1320px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+    <h1>Bienvenu sur resteau finder !</h1>
+
+    <div class="example-wrapper-flex">
+      
+        <p>Trouver les restaurants dans la ville de votre choix :</p>
+
+        <div class="flex_div">
+            
+            {% for ville in villes %}
+
+                <div>
+            
+                <h2><a href="{{path('Ville', {nom: ville.nom})}}">{{ ville.nom }}</h2>
+
+                <ul>
+
+                {% for restaurant in ville.restaurants %}
+
+                    <li><strong><a href="#">{{ restaurant.nom }}<a></strong> : {{restaurant.proprietaire.prenom}}</li>
+
+                {% endfor %}
+
+                </ul>
+
+                </div>
+               
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}
